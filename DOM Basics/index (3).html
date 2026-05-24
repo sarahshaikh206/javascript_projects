@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Basics</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      color: #333;
+      font-size: 24px;
+    }
+    h3 {
+      color: #555;
+      margin-top: 30px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+    input[type="text"] {
+      padding: 8px;
+      width: 220px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-right: 8px;
+    }
+    button {
+      padding: 8px 14px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px 5px 5px 0;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    #greeting {
+      color: #333;
+      font-weight: bold;
+      margin-top: 8px;
+      min-height: 20px;
+    }
+    #box {
+      width: 200px;
+      height: 100px;
+      background-color: lightgray;
+      border-radius: 6px;
+      margin: 10px 0;
+      transition: background-color 0.3s ease;
+    }
+    #colorBtn {
+      background-color: #2196F3;
+    }
+    #removeParaBtn {
+      background-color: #f44336;
+    }
+    #paraContainer p {
+      background: white;
+      padding: 10px;
+      border-left: 4px solid #4CAF50;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="mainHeading">DOM Basics Example</h1>
+
+  <!-- 1. Text Content Manipulation -->
+  <h3>Greeting</h3>
+  <input type="text" id="nameInput" placeholder="Enter your name" />
+  <button id="greetBtn">Greet</button>
+  <p id="greeting"></p>
+
+  <!-- 2. Style Manipulation -->
+  <h3>Style Manipulation</h3>
+  <div id="box"></div>
+  <button id="colorBtn">Change Color</button>
+
+  <!-- 3. Create / Remove Elements -->
+  <h3>Create & Remove Elements</h3>
+  <button id="addParaBtn">Add Paragraph</button>
+  <button id="removeParaBtn">Remove Paragraph</button>
+  <div id="paraContainer"></div>
+
+  <script>
+    // 1. Accessing Elements
+    const heading = document.getElementById("mainHeading");
+
+    // 2. Change Text on Button Click
+    document.getElementById("greetBtn").addEventListener("click", function () {
+      const name = document.getElementById("nameInput").value.trim();
+      if (name === "") {
+        document.getElementById("greeting").textContent = "Please enter your name!";
+        return;
+      }
+      document.getElementById("greeting").textContent = "Hello, " + name + "!";
+    });
+
+    // Allow Enter key to trigger greet
+    document.getElementById("nameInput").addEventListener("keypress", function (e) {
+      if (e.key === "Enter") document.getElementById("greetBtn").click();
+    });
+
+    // 3. Style Manipulation
+    document.getElementById("colorBtn").addEventListener("click", function () {
+      document.getElementById("box").style.backgroundColor = "skyblue";
+    });
+
+    // 4. Create Element
+    document.getElementById("addParaBtn").addEventListener("click", function () {
+      const p = document.createElement("p");
+      p.textContent = "I am a new paragraph.";
+      p.id = "newPara";
+      document.getElementById("paraContainer").appendChild(p);
+    });
+
+    // 5. Remove Element
+    document.getElementById("removeParaBtn").addEventListener("click", function () {
+      const p = document.getElementById("newPara");
+      if (p) p.remove();
+    });
+  </script>
+
+</body>
+</html>
